@@ -5,6 +5,11 @@ export interface User {
   token: string;
 }
 
+export interface Category {
+  id: string;
+  name: string;
+}
+
 export interface Book {
   id: string;
   title: string;
@@ -18,6 +23,7 @@ export interface Review {
   rating: number;
   comment: string;
   userName: string;
+  userId: string;
   createdAt: string;
 }
 

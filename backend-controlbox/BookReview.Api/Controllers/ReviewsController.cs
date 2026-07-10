@@ -1,8 +1,10 @@
-using System.Security.Claims;
 using BookReview.Application.Reviews.Commands;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Security.Claims;
+using System.Threading.Tasks;
 
 namespace BookReview.Api.Controllers;
 
@@ -24,7 +26,7 @@ public class ReviewsController : ControllerBase
         try
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            if (userId == null) return Unauthorized();
+            if (string.IsNullOrEmpty(userId)) return Unauthorized();
 
             var command = new CreateReviewCommand(request.BookId, request.Rating, request.Comment, userId);
             var reviewId = await _mediator.Send(command);
@@ -36,6 +38,53 @@ public class ReviewsController : ControllerBase
             return BadRequest(new { error = ex.Message });
         }
     }
+
+    [HttpPut("{id}")]
+    public async Task<IActionResult> UpdateReview(Guid id, [FromBody] UpdateReviewDto request)
+    {
+        try
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (string.IsNullOrEmpty(userId)) return Unauthorized();
+
+            var command = new UpdateReviewCommand(id, request.Rating, request.Comment, userId);
+            await _mediator.Send(command);
+            
+            return NoContent();
+        }
+        catch (UnauthorizedAccessException)
+        {
+            return Forbid();
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(new { error = ex.Message });
+        }
+    }
+
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> DeleteReview(Guid id)
+    {
+        try
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (string.IsNullOrEmpty(userId)) return Unauthorized();
+
+            var command = new DeleteReviewCommand(id, userId);
+            await _mediator.Send(command);
+            
+            return NoContent();
+        }
+        catch (UnauthorizedAccessException)
+        {
+            return Forbid();
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(new { error = ex.Message });
+        }
+    }
 }
 
 public record CreateReviewDto(Guid BookId, int Rating, string Comment);
+public record UpdateReviewDto(int Rating, string Comment);

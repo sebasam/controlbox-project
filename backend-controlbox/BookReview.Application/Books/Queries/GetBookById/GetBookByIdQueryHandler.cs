@@ -2,6 +2,11 @@ using BookReview.Application.Common.Interfaces.Authentication;
 using BookReview.Application.Common.Interfaces.Persistence;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace BookReview.Application.Books.Queries.GetBookById;
 
@@ -33,7 +38,7 @@ public class GetBookByIdQueryHandler : IRequestHandler<GetBookByIdQuery, BookDet
         foreach (var r in reviews)
         {
             var userName = await _identityService.GetUserNameAsync(r.UserId);
-            reviewDtos.Add(new ReviewDto(r.Id, r.Rating, r.Comment, userName, r.CreatedAt));
+            reviewDtos.Add(new ReviewDto(r.Id, r.Rating, r.Comment, userName, r.UserId, r.CreatedAt));
         }
 
         return new BookDetailDto(book.Id, book.Title, book.Author, book.Category.Name, book.Summary, reviewDtos);
