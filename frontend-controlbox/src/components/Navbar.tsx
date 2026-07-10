@@ -24,10 +24,10 @@ export const Navbar = () => {
           <div className="flex items-center space-x-4">
             {isAuthenticated ? (
               <>
-                <div className="flex items-center text-gray-700">
+                <Link to="/profile" className="flex items-center text-gray-700 hover:text-indigo-600 transition-colors">
                   <User className="h-5 w-5 mr-1" />
                   <span>{user?.userName}</span>
-                </div>
+                </Link>
                 <button
                   onClick={handleLogout}
                   className="flex items-center text-gray-500 hover:text-gray-700 transition-colors"
