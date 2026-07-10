@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "g946CKMN7hU=",
+  "dgSpecHash": "Yy28RAxopJw=",
   "success": true,
-  "projectFilePath": "C:\\Users\\sebas\\Documents\\technical-test\\controlbox\\backend-controlbox\\BookReview.Api\\BookReview.Api.csproj",
+  "projectFilePath": "c:\\Users\\sebas\\Documents\\technical-test\\controlbox\\backend-controlbox\\BookReview.Api\\BookReview.Api.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\sebas\\.nuget\\packages\\fluentvalidation\\12.1.1\\fluentvalidation.12.1.1.nupkg.sha512",
     "C:\\Users\\sebas\\.nuget\\packages\\fluentvalidation.dependencyinjectionextensions\\12.1.1\\fluentvalidation.dependencyinjectionextensions.12.1.1.nupkg.sha512",
@@ -57,9 +57,9 @@
       "code": "NU1603",
       "level": "Warning",
       "message": "BookReview.Api depends on Microsoft.AspNetCore.OpenApi (>= 6.6.2) but Microsoft.AspNetCore.OpenApi 6.6.2 was not found. Microsoft.AspNetCore.OpenApi 7.0.0 was resolved instead.",
-      "projectPath": "C:\\Users\\sebas\\Documents\\technical-test\\controlbox\\backend-controlbox\\BookReview.Api\\BookReview.Api.csproj",
+      "projectPath": "c:\\Users\\sebas\\Documents\\technical-test\\controlbox\\backend-controlbox\\BookReview.Api\\BookReview.Api.csproj",
       "warningLevel": 1,
-      "filePath": "C:\\Users\\sebas\\Documents\\technical-test\\controlbox\\backend-controlbox\\BookReview.Api\\BookReview.Api.csproj",
+      "filePath": "c:\\Users\\sebas\\Documents\\technical-test\\controlbox\\backend-controlbox\\BookReview.Api\\BookReview.Api.csproj",
       "libraryId": "Microsoft.AspNetCore.OpenApi",
       "targetGraphs": [
         "net10.0"

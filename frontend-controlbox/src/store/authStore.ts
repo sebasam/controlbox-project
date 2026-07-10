@@ -1,27 +1,24 @@
 import { create } from 'zustand';
+import { persist } from 'zustand/middleware';
 import type { User } from '../types';
 
-interface AuthState {
+export interface AuthState {
   user: User | null;
   isAuthenticated: boolean;
   login: (user: User) => void;
   logout: () => void;
 }
 
-export const useAuthStore = create((set) => {
-  const storedUser = localStorage.getItem('auth-user');
-  const initialUser = storedUser ? JSON.parse(storedUser) : null;
-
-  return {
-    user: initialUser,
-    isAuthenticated: !!initialUser,
-    login: (user: User) => {
-      localStorage.setItem('auth-user', JSON.stringify(user));
-      set({ user, isAuthenticated: true });
-    },
-    logout: () => {
-      localStorage.removeItem('auth-user');
-      set({ user: null, isAuthenticated: false });
-    },
-  };
-});
+export const useAuthStore = create()(
+  persist(
+    (set) => ({
+      user: null,
+      isAuthenticated: false,
+      login: (user) => set({ user, isAuthenticated: true }),
+      logout: () => set({ user: null, isAuthenticated: false }),
+    }),
+    {
+      name: 'auth-storage',
+    }
+  )
+);
