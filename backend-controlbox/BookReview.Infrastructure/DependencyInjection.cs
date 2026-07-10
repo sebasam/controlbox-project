@@ -1,5 +1,6 @@
 using System.Text;
 using BookReview.Application.Common.Interfaces.Authentication;
+using BookReview.Application.Common.Interfaces.Persistence;
 using BookReview.Infrastructure.Authentication;
 using BookReview.Infrastructure.Identity;
 using BookReview.Infrastructure.Persistence;
@@ -47,6 +48,9 @@ public static class DependencyInjection
                 IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings.Secret))
             };
         });
+
+        services.AddScoped<IIdentityService, IdentityService>();
+        services.AddScoped<IApplicationDbContext>(provider => provider.GetRequiredService<ApplicationDbContext>());
 
         return services;
     }
