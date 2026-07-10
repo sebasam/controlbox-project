@@ -2,6 +2,8 @@ using BookReview.Application.Authentication.Commands.Register;
 using BookReview.Application.Authentication.Queries.Login;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Threading.Tasks;
 
 namespace BookReview.Api.Controllers;
 
@@ -41,6 +43,34 @@ public class AuthController : ControllerBase
         catch (Exception ex)
         {
             return Unauthorized(new { error = ex.Message });
+        }
+    }
+
+    [HttpPost("forgot-password")]
+    public async Task<IActionResult> ForgotPassword([FromBody] BookReview.Application.Authentication.Commands.ForgotPassword.ForgotPasswordCommand command)
+    {
+        try
+        {
+            var token = await _mediator.Send(command);
+            return Ok(new { token });
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(new { error = ex.Message });
+        }
+    }
+
+    [HttpPost("reset-password")]
+    public async Task<IActionResult> ResetPassword([FromBody] BookReview.Application.Authentication.Commands.ResetPassword.ResetPasswordCommand command)
+    {
+        try
+        {
+            await _mediator.Send(command);
+            return Ok(new { message = "Password reset successful" });
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(new { error = ex.Message });
         }
     }
 }

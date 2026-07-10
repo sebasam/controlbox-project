@@ -48,6 +48,11 @@ export const Login = () => {
             required
           />
         </div>
+        <div className="mb-6 text-right">
+          <Link to="/forgot-password" className="text-sm text-indigo-600 hover:underline">
+            Forgot your password?
+          </Link>
+        </div>
         <button
           type="submit"
           className="w-full bg-indigo-600 text-white font-bold py-2 px-4 rounded hover:bg-indigo-700 transition-colors"

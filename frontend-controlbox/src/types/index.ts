@@ -30,3 +30,19 @@ export interface Review {
 export interface BookDetail extends Book {
   reviews: Review[];
 }
+
+export interface UserReview {
+  id: string;
+  bookId: string;
+  bookTitle: string;
+  rating: number;
+  comment: string;
+  createdAt: string;
+}
+
+export interface UserProfile {
+  userName: string;
+  email: string;
+  profilePictureUrl: string;
+  reviews: UserReview[];
+}
