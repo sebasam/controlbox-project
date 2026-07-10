@@ -1,12 +1,10 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { apiClient } from '../api/axios';
-import { useAuthStore } from '../store/authStore';
 import type { UserProfile } from '../types';
 import { User, Star, BookOpen } from 'lucide-react';
 
 export const Profile = () => {
-  const { user } = useAuthStore();
   const [profile, setProfile] = useState<UserProfile | null>(null);
   const [pictureUrl, setPictureUrl] = useState('');
   const [isUpdating, setIsUpdating] = useState(false);
