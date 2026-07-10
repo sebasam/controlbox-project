@@ -3,7 +3,7 @@
 A full-stack web application that allows users to browse, search, and review books. Built with a strict Clean Architecture approach using .NET for the backend and React (Vite) for the frontend.
 
 ## 🚀 Live Demo
-- **Frontend (Vercel):** pending
+- **Frontend (Vercel):** https://controlbox-project-amd.vercel.app/
 - **Backend API:** https://controlboxapi-latest.onrender.com/
 
 ## 🛠️ Tech Stack
@@ -74,5 +74,7 @@ The backend strictly follows **Clean Architecture** principles, separated into f
 This repository utilizes **GitHub Actions** for Continuous Integration. Upon pushing to the `main` branch, the workflow automatically:
 - Restores and builds the .NET Backend.
 - Installs dependencies and builds the React Frontend.
+
+## For Register in the app, use STRONG password
 
 Deployment is handled via Vercel for the frontend (connected to the GitHub repository for automatic deployments), Render for the backend API and Amazon RDS for PostgreSQL Database.
